@@ -164,5 +164,12 @@ npm run dev
 
 ---
 
+## 👨‍💻 توسعه‌دهنده و سازنده / Author & Developer
+- **اسد خلیلی (Asad Khalili)**
+- وب‌سایت شخصی: [https://asadkhalili.ir](https://asadkhalili.ir)
+- گیت‌هاب: [@asad-khalili-it](https://github.com/asad-khalili-it)
+
+---
+
 ## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source and developed by [Asad Khalili](https://asadkhalili.ir) under the [MIT License](LICENSE).

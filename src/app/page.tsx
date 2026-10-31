@@ -114,7 +114,17 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-slate-900 py-8 text-center text-xs text-slate-500">
-        سامانه گردونه شانس فروشگاهی • طراحی و توسعه فوق‌حرفه‌ای
+        <p>
+          سامانه هوشمند گردونه شانس فروشگاهی • طراحی و توسعه توسط{" "}
+          <a
+            href="https://asadkhalili.ir"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-amber-400 hover:text-amber-300 font-bold transition-colors"
+          >
+            اسد خلیلی (Asad Khalili)
+          </a>
+        </p>
       </footer>
     </div>
   );

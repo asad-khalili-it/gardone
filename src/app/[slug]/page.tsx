@@ -398,9 +398,20 @@ export default function WheelPage({ params }: { params: Promise<{ slug: string }
       </main>
 
       {/* Footer Info */}
-      <footer className="relative z-10 pb-6 px-4 text-center text-xs text-slate-500">
+      <footer className="relative z-10 pb-6 px-4 text-center text-xs text-slate-500 space-y-1">
         <p>با اسکن بارکد در خرید حضوری، کد تخفیف را به صندوق‌دار تحویل دهید</p>
-        {store.instagram && <p className="mt-1 text-slate-400 font-mono dir-ltr">{store.instagram}</p>}
+        <p className="text-[11px] text-slate-600">
+          طراحی و توسعه توسط{" "}
+          <a
+            href="https://asadkhalili.ir"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-amber-400/80 hover:text-amber-300 font-bold"
+          >
+            اسد خلیلی (Asad Khalili)
+          </a>
+        </p>
+        {store.instagram && <p className="pt-0.5 text-slate-400 font-mono dir-ltr">{store.instagram}</p>}
       </footer>
 
       {/* Registration Modal */}

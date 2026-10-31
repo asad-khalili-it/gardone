@@ -112,7 +112,17 @@ export default function LoginPage() {
             <p>ایمیل: <span className="font-mono text-white">admin@admin.com</span></p>
             <p>رمز عبور: <span className="font-mono text-white">admin123</span></p>
           </div>
-          سامانه گردونه شانس فروشگاهی • نسخه حرفه‌ای
+          <p className="text-slate-400">
+            طراحی و توسعه توسط{" "}
+            <a
+              href="https://asadkhalili.ir"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-400 hover:text-amber-300 font-bold"
+            >
+              اسد خلیلی (Asad Khalili)
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -246,8 +246,16 @@ export default function RegisterStorePage() {
         </div>
       </div>
 
-      <footer className="text-center text-xs text-slate-600 pt-6">
-        سامانه هوشمند گردونه شانس فروشگاهی • گردونه
+      <footer className="text-center text-xs text-slate-500 pt-6">
+        سامانه هوشمند گردونه شانس • طراحی و توسعه توسط{" "}
+        <a
+          href="https://asadkhalili.ir"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-amber-400 hover:text-amber-300 font-bold"
+        >
+          اسد خلیلی (Asad Khalili)
+        </a>
       </footer>
     </div>
   );
