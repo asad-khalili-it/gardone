@@ -26,15 +26,15 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className="px-5 py-2.5 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/60 hover:bg-slate-900 text-sm font-semibold transition-all text-slate-200"
+              className="px-4 py-2 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/60 hover:bg-slate-900 text-xs sm:text-sm font-semibold transition-all text-slate-200"
             >
-              ورود به پنل مدیریت
+              ورود به پنل
             </Link>
             <Link
-              href="/demo-store"
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 text-sm font-bold shadow-lg shadow-orange-500/25 transition-all flex items-center gap-2"
+              href="/register"
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 text-xs sm:text-sm font-bold shadow-lg shadow-orange-500/25 transition-all flex items-center gap-1.5"
             >
-              <span>مشاهده دمو گردونه</span>
+              <span>ثبت‌نام رایگان فروشگاه</span>
               <ArrowLeft className="w-4 h-4" />
             </Link>
           </div>
@@ -61,18 +61,18 @@ export default function Home() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <Link
-            href="/demo-store"
-            className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 text-base font-black shadow-2xl shadow-orange-500/30 transition-all flex items-center justify-center gap-3"
+            href="/register"
+            className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-orange-500 hover:brightness-110 text-slate-950 text-base font-black shadow-2xl shadow-orange-500/30 transition-all flex items-center justify-center gap-3 cursor-pointer"
           >
-            <span>تست زنده گردونه (فروشگاه نمونه)</span>
+            <span>همین حالا فروشگاه خود را بسازید (رایگان)</span>
             <ArrowLeft className="w-5 h-5" />
           </Link>
 
           <Link
-            href="/admin"
-            className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 border border-slate-800 hover:bg-slate-800/80 text-white text-base font-bold transition-all"
+            href="/demo-store"
+            className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 border border-slate-800 hover:bg-slate-800/80 text-white text-base font-bold transition-all flex items-center justify-center gap-2"
           >
-            پنل سوپر ادمین
+            <span>مشاهده نمونه زنده گردونه</span>
           </Link>
         </div>
       </section>

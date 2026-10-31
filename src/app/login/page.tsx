@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
@@ -96,7 +97,16 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-400">
+        <div className="mt-6 text-center">
+          <p className="text-xs text-slate-400">
+            هنوز برای فروشگاه خود ثبت‌نام نکرده‌اید؟{" "}
+            <Link href="/register" className="text-amber-400 hover:text-amber-300 font-bold">
+              ثبت‌نام رایگان فروشگاه
+            </Link>
+          </p>
+        </div>
+
+        <div className="mt-6 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-400">
           <div className="mb-2 p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-300/90 text-right space-y-1">
             <p className="font-bold text-amber-400">اطلاعات ورود پیش‌فرض مدیر کل:</p>
             <p>ایمیل: <span className="font-mono text-white">admin@admin.com</span></p>
