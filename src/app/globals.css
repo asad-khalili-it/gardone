@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  /* Default theme colors - overridden by store config */
+  --color-primary: #FF6B35;
+  --color-secondary: #004E89;
+  --color-accent: #FFD700;
+  --color-background: #1a1a2e;
+  --color-surface: #16213e;
+  --color-text: #ffffff;
+  --color-text-secondary: #a0aec0;
+}
+
+* {
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary);
+  color: white;
+}

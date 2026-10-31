@@ -1,0 +1,102 @@
+/* Starter Theme - Modern Dark with Vibrant Accents */
+
+.theme-starter {
+  --color-primary: #FF6B35;
+  --color-secondary: #004E89;
+  --color-accent: #FFD700;
+  --color-background: #090d16;
+  --color-surface: #111827;
+  --color-text: #ffffff;
+  --color-text-secondary: #94a3b8;
+}
+
+/* Luxury Casino / Stage Background Lights */
+.theme-starter .wheel-page-bg {
+  background: 
+    radial-gradient(circle at 50% 18%, rgba(245, 158, 11, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 10% 80%, rgba(239, 68, 68, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 90% 85%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 120%, rgba(245, 158, 11, 0.15) 0%, transparent 70%),
+    #090d16;
+}
+
+/* Ambient animated mesh glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+.theme-starter .ambient-glow {
+  animation: pulseGlow 6s ease-in-out infinite alternate;
+}
+
+/* Animated background gradient */
+@keyframes starterGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.theme-starter .animated-bg {
+  background: linear-gradient(
+    -45deg,
+    #1a1a2e,
+    #16213e,
+    #0f3460,
+    #1a1a2e,
+    #16213e
+  );
+  background-size: 400% 400%;
+  animation: starterGradient 15s ease infinite;
+}
+
+/* Floating particles */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.theme-starter .particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0;
+  animation: float linear infinite;
+}
+
+.theme-starter .particle:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+.theme-starter .particle:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 1s; }
+.theme-starter .particle:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 2s; }
+.theme-starter .particle:nth-child(4) { left: 40%; animation-duration: 14s; animation-delay: 3s; }
+.theme-starter .particle:nth-child(5) { left: 50%; animation-duration: 9s; animation-delay: 0.5s; }
+.theme-starter .particle:nth-child(6) { left: 60%; animation-duration: 11s; animation-delay: 1.5s; }
+.theme-starter .particle:nth-child(7) { left: 70%; animation-duration: 13s; animation-delay: 2.5s; }
+.theme-starter .particle:nth-child(8) { left: 80%; animation-duration: 8s; animation-delay: 3.5s; }
+.theme-starter .particle:nth-child(9) { left: 90%; animation-duration: 10s; animation-delay: 4s; }
+.theme-starter .particle:nth-child(10) { left: 95%; animation-duration: 12s; animation-delay: 0.3s; }

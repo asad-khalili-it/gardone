@@ -1,0 +1,98 @@
+/* Luxury Theme - Gold & Elegance */
+
+.theme-luxury {
+  --color-primary: #C9A84C;
+  --color-secondary: #2C2C2C;
+  --color-accent: #FFD700;
+  --color-background: #0D0D0D;
+  --color-surface: #1A1A1A;
+  --color-text: #F5F0E1;
+  --color-text-secondary: #A89968;
+}
+
+.theme-luxury .wheel-page-bg {
+  background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #0D0D0D 100%);
+}
+
+@keyframes luxuryShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.theme-luxury .animated-bg {
+  background: linear-gradient(
+    135deg,
+    #0D0D0D 0%,
+    #1A1A1A 25%,
+    #2C2C2C 50%,
+    #1A1A1A 75%,
+    #0D0D0D 100%
+  );
+  background-size: 200% 200%;
+  animation: starterGradient 20s ease infinite;
+}
+
+/* Gold shimmer overlay */
+.theme-luxury::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 168, 76, 0.03) 25%,
+    rgba(255, 215, 0, 0.05) 50%,
+    rgba(201, 168, 76, 0.03) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: luxuryShimmer 8s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes goldFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.theme-luxury .particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD700, #C9A84C);
+  opacity: 0;
+  animation: goldFloat linear infinite;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
+}
+
+.theme-luxury .particle:nth-child(1) { left: 10%; animation-duration: 10s; animation-delay: 0s; }
+.theme-luxury .particle:nth-child(2) { left: 20%; animation-duration: 14s; animation-delay: 1s; }
+.theme-luxury .particle:nth-child(3) { left: 30%; animation-duration: 12s; animation-delay: 2s; }
+.theme-luxury .particle:nth-child(4) { left: 40%; animation-duration: 16s; animation-delay: 3s; }
+.theme-luxury .particle:nth-child(5) { left: 50%; animation-duration: 11s; animation-delay: 0.5s; }
+.theme-luxury .particle:nth-child(6) { left: 60%; animation-duration: 13s; animation-delay: 1.5s; }
+.theme-luxury .particle:nth-child(7) { left: 70%; animation-duration: 15s; animation-delay: 2.5s; }
+.theme-luxury .particle:nth-child(8) { left: 80%; animation-duration: 10s; animation-delay: 3.5s; }
+.theme-luxury .particle:nth-child(9) { left: 90%; animation-duration: 12s; animation-delay: 4s; }
+.theme-luxury .particle:nth-child(10) { left: 95%; animation-duration: 14s; animation-delay: 0.3s; }

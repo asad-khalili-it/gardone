@@ -1,0 +1,131 @@
+/* Neon Theme - Cyberpunk Glow */
+
+.theme-neon {
+  --color-primary: #00F5FF;
+  --color-secondary: #FF00E5;
+  --color-accent: #39FF14;
+  --color-background: #0A0A0F;
+  --color-surface: #12121A;
+  --color-text: #E0E0FF;
+  --color-text-secondary: #8888AA;
+}
+
+.theme-neon .wheel-page-bg {
+  background: linear-gradient(135deg, #0A0A0F 0%, #12121A 50%, #0A0A0F 100%);
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.1);
+  }
+}
+
+.theme-neon .animated-bg {
+  background: linear-gradient(
+    -45deg,
+    #0A0A0F,
+    #0D0D1A,
+    #12121A,
+    #0A0A0F
+  );
+  background-size: 400% 400%;
+  animation: neonPulse 10s ease infinite;
+}
+
+/* Neon grid lines */
+.theme-neon .wheel-page-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Neon glow scanline */
+@keyframes neonScan {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.theme-neon .wheel-page-bg::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 245, 255, 0.4),
+    rgba(255, 0, 229, 0.4),
+    transparent
+  );
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+  animation: neonScan 6s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes neonFloat {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+.theme-neon .particle {
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  border-radius: 1px;
+  opacity: 0;
+  animation: neonFloat linear infinite;
+}
+
+.theme-neon .particle:nth-child(odd) {
+  background: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary), 0 0 16px var(--color-primary);
+}
+
+.theme-neon .particle:nth-child(even) {
+  background: var(--color-secondary);
+  box-shadow: 0 0 8px var(--color-secondary), 0 0 16px var(--color-secondary);
+}
+
+.theme-neon .particle:nth-child(1) { left: 10%; animation-duration: 7s; animation-delay: 0s; }
+.theme-neon .particle:nth-child(2) { left: 20%; animation-duration: 11s; animation-delay: 1s; }
+.theme-neon .particle:nth-child(3) { left: 30%; animation-duration: 9s; animation-delay: 2s; }
+.theme-neon .particle:nth-child(4) { left: 40%; animation-duration: 13s; animation-delay: 3s; }
+.theme-neon .particle:nth-child(5) { left: 50%; animation-duration: 8s; animation-delay: 0.5s; }
+.theme-neon .particle:nth-child(6) { left: 60%; animation-duration: 10s; animation-delay: 1.5s; }
+.theme-neon .particle:nth-child(7) { left: 70%; animation-duration: 12s; animation-delay: 2.5s; }
+.theme-neon .particle:nth-child(8) { left: 80%; animation-duration: 7s; animation-delay: 3.5s; }
+.theme-neon .particle:nth-child(9) { left: 90%; animation-duration: 9s; animation-delay: 4s; }
+.theme-neon .particle:nth-child(10) { left: 95%; animation-duration: 11s; animation-delay: 0.3s; }
