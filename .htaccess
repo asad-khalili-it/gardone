@@ -1,0 +1,21 @@
+# Next.js Reverse Proxy for gardone.asadkhalili.ir
+DirectoryIndex disabled
+
+RewriteEngine On
+RewriteBase /
+
+# 1. WebSocket support
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteCond %{HTTP:Connection} upgrade [NC]
+RewriteRule ^(.*)$ ws://127.0.0.1:3042/$1 [P,L]
+
+# 2. Map root and index.php / index.html directly to Next.js root /
+RewriteRule ^$ http://127.0.0.1:3042/ [P,L]
+RewriteRule ^index\.(php|html?)$ http://127.0.0.1:3042/ [P,L]
+
+# 3. Proxy Next.js static assets
+RewriteRule ^_next/(.*)$ http://127.0.0.1:3042/_next/$1 [P,L]
+
+# 4. Proxy all other requests to Next.js on port 3042
+RewriteRule ^(.*)$ http://127.0.0.1:3042/$1 [P,L]
+

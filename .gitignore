@@ -23,6 +23,10 @@
 # misc
 .DS_Store
 *.pem
+.idea/
+reel-assets/
+vibe_images/
+vibe_videos/
 
 # debug
 npm-debug.log*
