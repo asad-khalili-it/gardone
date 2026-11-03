@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 // 1. Manually parse .env from project root if not already in process.env
 const envPath = path.resolve(__dirname, '../.env');
@@ -37,13 +38,47 @@ const bcrypt = require('bcryptjs');
 
 const prisma = new PrismaClient();
 
+// Helper to generate cryptographically strong random password
+function generateRandomPassword(length = 14) {
+  const lower = 'abcdefghjkmnpqrstuvwxyz';
+  const upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+  const numbers = '23456789';
+  const symbols = '!@#$%&*';
+  const allChars = lower + upper + numbers + symbols;
+
+  // Guarantee at least one from each group
+  let password = [
+    lower[crypto.randomInt(0, lower.length)],
+    upper[crypto.randomInt(0, upper.length)],
+    numbers[crypto.randomInt(0, numbers.length)],
+    symbols[crypto.randomInt(0, symbols.length)],
+  ];
+
+  for (let i = password.length; i < length; i++) {
+    password.push(allChars[crypto.randomInt(0, allChars.length)]);
+  }
+
+  // Shuffle array using Fisher-Yates
+  for (let i = password.length - 1; i > 0; i--) {
+    const j = crypto.randomInt(0, i + 1);
+    [password[i], password[j]] = [password[j], password[i]];
+  }
+
+  return password.join('');
+}
+
 async function main() {
-  // 1. Seed / Upsert Super Admin
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@asadkhalili.ir';
-  const adminPassword = process.env.ADMIN_PASSWORD || 'Asad@Gardone!2026';
-  const adminName = 'اسد خلیلی (مدیر کل)';
+  // Command line args or env vars:
+  // Usage: node scripts/create-admin.js [optional_custom_password] [optional_email]
+  const customPasswordArg = process.argv[2];
+  const customEmailArg = process.argv[3];
+
+  const adminEmail = customEmailArg || process.env.ADMIN_EMAIL || 'admin@gardone.ir';
+  const adminPassword = customPasswordArg || process.env.ADMIN_PASSWORD || generateRandomPassword(14);
+  const adminName = 'مدیر کل سامانه گردونه';
   const hashedAdminPassword = await bcrypt.hash(adminPassword, 10);
 
+  // Upsert Super Admin (creates if not exists, updates password if already exists -> Acts as Password Reset)
   const admin = await prisma.admin.upsert({
     where: { email: adminEmail },
     update: {
@@ -59,7 +94,7 @@ async function main() {
     }
   });
 
-  // 2. Seed / Upsert Demo Store Owner
+  // Seed / Upsert Demo Store Owner
   const demoEmail = 'demo@store.com';
   const demoPassword = 'demo123';
   const hashedDemoPassword = await bcrypt.hash(demoPassword, 10);
@@ -86,19 +121,24 @@ async function main() {
     }
   });
 
-  console.log('====================================================');
+  console.log('\n====================================================');
   console.log('✅ ۱. اطلاعات ورود مدیر کل سامانه (Super Admin):');
   console.log(`👤 نام: ${admin.name}`);
   console.log(`📧 ایمیل: ${admin.email}`);
   console.log(`🔑 رمز عبور: ${adminPassword}`);
-  console.log(`🔗 مسیر پنل: /admin`);
+  console.log(`🔗 مسیر ورود به پنل مدیریت: /admin`);
+  console.log('----------------------------------------------------');
+  console.log('💡 نکته امنیتی:');
+  console.log('رمز عبور مدیر به صورت تصادفی و امن تولید شده است.');
+  console.log('برای ریست رمز یا تعیین رمز دلخواه، می‌توانید مجدداً دستور زیر را بزنید:');
+  console.log('👉 node scripts/create-admin.js [رمز_جدید_دلخواه]');
   console.log('----------------------------------------------------');
   console.log('✅ ۲. اطلاعات ورود فروشگاه دمو (Store Owner):');
   console.log(`🏪 نام فروشگاه: ${demoStore.name}`);
   console.log(`📧 ایمیل: ${demoEmail}`);
   console.log(`🔑 رمز عبور: ${demoPassword}`);
-  console.log(`🔗 مسیر پنل: /panel`);
-  console.log('====================================================');
+  console.log(`🔗 مسیر پنل فروشگاه: /panel`);
+  console.log('====================================================\n');
 }
 
 main()

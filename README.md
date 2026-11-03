@@ -1,7 +1,7 @@
 # 🎡 Gardone | گردونه شانس فروشگاهی
 
-> **An interactive, multi-store, and gamified customer engagement platform built with Next.js, Canvas API, Tailwind CSS, and MySQL.**  
-> **سامانه نرم‌افزاری چندفروشگاهی گردونه شانس برای جذب مشتریان حضوری و آنلاین با اسکن QR کد اختصاصی.**
+> **یک پلتفرم هوشمند، چندفروشگاهی و گیمیفای‌شده (Gamified) برای افزایش فروش و جذب مشتریان حضوری با اسکن QR کد اختصاصی.**  
+> **An interactive, multi-store, gamified customer acquisition platform built with Next.js 16, Canvas API, Tailwind CSS, and MySQL.**
 
 [![Next.js](https://img.shields.io/badge/Next.js-16+-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -11,131 +11,199 @@
 
 ---
 
-## 📑 فهرست / Table of Contents
-- [فارسی (Persian Guide)](#-راهنمای-فارسی)
-  - [ایده و نحوه کار](#-ایده-و-نحوه-کار)
+## 📑 فهرست مطالب / Table of Contents
+- [🇮🇷 راهنمای فارسی](#-راهنمای-فارسی)
+  - [ایده و نحوه عملکرد](#-ایده-و-نحوه-عملکرد)
   - [ویژگی‌های کلیدی](#-ویژگیهای-کلیدی)
-  - [معماری و نقشها](#-معماری-و-نقشها)
-  - [راهاندازی و نصب محلی](#-راهاندازی-و-نصب-محلی)
-- [English Documentation](#-english-documentation)
+  - [نقش‌ها، صفحات و مسیرهای سامانه](#-نقشها-صفحات-و-مسیرهای-سامانه)
+  - [راهنمای جامع نصب و راه‌اندازی (لوکال و هاست/سرور)](#-راهنمای-جامع-نصب-و-راهاندازی)
+  - [مدیریت و ریست رمز عبور ادمین](#-مدیریت-و-ریست-رمز-عبور-ادمین)
+  - [تنظیمات پروداکشن (PM2 و وب سرور / cPanel)](#-تنظیمات-پروداکشن-pm2-و-وب-سرور--cpanel)
+- [🇬🇧 English Documentation](#-english-documentation)
   - [Overview](#-overview)
   - [Key Features](#-key-features)
   - [Roles & Architecture](#-roles--architecture)
-  - [Getting Started](#-getting-started)
-  - [Environment Variables](#-environment-variables)
-- [License](#-license)
+  - [Quick Start & Installation](#-quick-start--installation)
+  - [Admin Setup & Password Reset](#-admin-setup--password-reset)
+  - [Production & Reverse Proxy](#-production--reverse-proxy)
+- [👨‍💻 توسعه‌دهنده / Author](#-توسعهدهنده--author)
+- [📄 License](#-license)
 
 ---
 
 # 🇮🇷 راهنمای فارسی
 
-## 🎯 ایده و نحوه کار
-فروشگاه‌های حضوری (کافه‌ها، پوشاک، طلافروشی، مزون‌ها و...) پوستر حاوی **QR کد اختصاصی** خود را پشت شیشه مغازه یا روی پیشخوان نصب می‌کنند. 
-رهگذران و خریداران با دوربین موبایل بارکد را اسکن کرده، نام و شماره موبایل خود را وارد می‌کنند و گردونه شانس را می‌چرخانند. جوایز (تخفیف‌های درصدی، ارسال رایگان یا هدایای ویژه) همراه با **کد تخفیف یکتا** به مشتری داده می‌شود و شماره تماس آنها برای کمپین‌های تبلیغاتی در دیتابیس فروشگاه ذخیره می‌گردد.
+## 🎯 ایده و نحوه عملکرد
+فروشگاه‌های فیزیکی و زنجیره‌ای (پوشاک، کافه، رستوران، طلافروشی، لوازم آرایشی و...) پوستر شکیل حاوی **QR Code اختصاصی** خود را پشت شیشه یا روی پیشخوان قرار می‌دهند.  
+مشتریان با گوشی هوشمند خود کد را اسکن کرده، با وارد کردن نام و شماره تماس وارد گردونه شانس فروشگاه می‌شوند. پس از چرخش گردونه، جایزه یا درصد تخفیف برنده شده را به همراه **کد کوپن اختصاصی** دریافت می‌کنند. هم‌زمان، شماره مشتری در دیتابیس مغازه‌دار جهت اطلاع‌رسانی‌ها و کمپین‌های پیامکی ثبت می‌شود.
+
+---
 
 ## ✨ ویژگی‌های کلیدی
-- **گردونه روان و بومی با Canvas API:** بدون نیاز به پکیج‌های سنگین؛ انیمیشن چرخش پرسرعت کازینویی با حداقل ۵ الی ۷ دور چرخش، لامپ‌های نئونی متحرک و صدای کلیک.
-- **تولید خودکار پوستر و QR Code:** تولید خودکار بارکد اختصاصی هر فروشگاه در پنل مغازه‌دار با دکمه **دانلود باکیفیت PNG** و **چاپ مستقیم پوستر آماده برای چسباندن به شیشه مغازه**.
-- **۳ قالب بصری متنوع و قابل شخصی‌سازی:**
-  - 🎨 **Starter:** طراحی مدرن و شاد تیره.
-  - 👑 **Luxury:** طراحی مشکی و طلایی سلطنتی مناسب طلافروشی، ساعت و مزون‌ها.
-  - ⚡ **Neon:** افکت‌های سایه نوری و سایبرپانکی مناسب کافه‌ها و فروشگاه‌های مدرن.
-- **آپلود مستقیم لوگوی فروشگاه:** آپلودر اختصاصی تصاویر جهت قرارگیری نشان مغازه در بالای گردونه.
-- **سیستم ضد تقلب و تفکیک فروشگاه‌ها:** شانس هر مشتری بر اساس هر فروشگاه مجزا است؛ پس از برنده شدن، کد تخفیف ذخیره شده و از چرخش مکرر جلوگیری می‌شود.
-- **ثبت مصرف تخفیف (Redeem System):** مغازه‌دار می‌تواند هنگام خرید حضوری، دکمه «ثبت مصرف» را بزند تا یک کد تخفیف دوباره استفاده نشود.
-- **خروجی اکسل (CSV):** امکان دانلود لیست شماره موبایل و نام مشتریان برای ارسال اس‌ام‌اس تبلیغاتی.
+- 🎡 **گردونه اختصاصی بومی با HTML5 Canvas:** عملکرد فوق‌العاده روان، انیمیشن چرخش پرسرعت کازینویی (Ease-Out)، لامپ‌های متحرک نئونی و صدای کلیک صوتی بدون وابستگی به کتابخانه‌های سنگین.
+- 🖨️ **تولید خودکار پوستر و QR Code اختصاصی:** تولید بارکد اختصاصی با امکان دانلود فایل PNG یا **چاپ مستقیم پوستر شکیل و استاندارد** برای چسباندن روی شیشه فروشگاه.
+- 🎨 **۳ تم بصری متفاوت و چشم‌نواز:**
+  - **Starter:** مدرن، شاد و پرانرژی با تم تیره و رنگ‌های پویای نئونی.
+  - **Luxury:** طراحی مشکی و طلایی سلطنتی مناسب جواهرفروشی‌ها، ساعت و گالری‌های لوکس.
+  - **Neon:** استایل سایبرپانک با درخشش نور نئونی مناسب کافه‌ها و برندهای جوان‌پسند.
+- 🖼️ **شخصی‌سازی و آپلود لوگو:** بارگذاری مستقیم نشان تجاری و لوگوی فروشگاه در بالای گردونه.
+- 🛡️ **سیستم ضد تقلب و ابطال کوپن (Redeem System):** ثبت هر شانس به تفکیک فروشگاه و امکان ابطال کد تخفیف توسط فروشنده در پنل پس از استفاده مشتری.
+- 📊 **خروجی اکسل (CSV) از شماره‌ها:** دریافت خروجی از تمامی لیدهای جذب‌شده برای کمپین‌های پیامکی و بازاریابی مجدد (Remarketing).
 
-## 👥 نقش‌ها و دسترسی‌ها
+---
 
-```
-                           ┌────────────────────────┐
-                           │   Super Admin (مدیر کل)│
-                           └───────────┬────────────┘
-                                       │
-            ┌──────────────────────────┴──────────────────────────┐
-            ▼                                                     ▼
-┌───────────────────────┐                             ┌───────────────────────┐
-│     پنل سوپر ادمین     │                             │  ثبت فروشگاه‌های جدید  │
-│  آمار کل و مانیتورینگ  │                             │   تخصیص تم و مدیریت   │
-└───────────────────────┘                             └───────────┬───────────┘
-                                                                  │
-                                                                  ▼
-                                                      ┌───────────────────────┐
-                                                      │  صاحب فروشگاه (Store)  │
-                                                      └───────────┬───────────┘
-                                                                  │
-            ┌─────────────────────────────────────────────────────┴──────────────────────────┐
-            ▼                                                     ▼                          ▼
-┌───────────────────────┐                             ┌───────────────────────┐  ┌───────────────────────┐
-│  مدیریت جوایز و درصدها│                             │ دریافت QR و چاپ پوستر │  │ مشاهده مشتریان و ابطال│
-└───────────────────────┘                             └───────────────────────┘  └───────────────────────┘
-```
+## 👥 نقش‌ها، صفحات و مسیرهای سامانه
 
-> **نکته:** در حال حاضر ثبت فروشگاه از طریق پنل ادمین کل مدیریت می‌شود تا بتوانید این سیستم را به صورت پکیج‌های اشتراکی یا طراحی اختصاصی به مغازه‌داران بفروشید. (در صورت تمایل می‌توان فرم ثبت‌نام عمومی هم اضافه کرد).
+| مسیر (URL) | عنوان | دسترسی و توضیحات |
+| :--- | :--- | :--- |
+| `/` | **صفحه اصلی (لندینگ)** | معرفی سامانه، مزایا، آمار و پیش‌نمایش زنده |
+| `/[slug]` | **گردونه شانس فروشگاه** | صفحه اسکن شده توسط مشتری (مثلاً `/demo-store` یا `/gardone`) |
+| `/login` | **صفحه ورود یکپارچه** | ورود صاحب فروشگاه یا ادمین کل با نمایش اطلاعات اکانت دمو |
+| `/panel` | **پنل صاحب فروشگاه** | تنظیم جوایز و درصدها، دانلود QR، ثبت ابطال بن‌ها، خروجی شماره‌ها |
+| `/admin` | **پنل سوپر ادمین** | ایجاد و فعال‌سازی فروشگاه‌ها، مدیریت تم‌ها و آمار سامانه |
 
-## 🚀 راه‌اندازی و نصب محلی
+---
+
+## 🚀 راهنمای جامع نصب و راه‌اندازی
 
 ### پیش‌نیازها:
-- Node.js نسخه 18 یا بالاتر
-- سرویس پایگاه‌داده MySQL / MariaDB (مثل XAMPP)
+- **Node.js** نسخه `18.18+` یا `20+`
+- **پایگاه‌داده MySQL** یا **MariaDB** (مانند XAMPP، سرور لینوکس یا دیتابیس cPanel)
+- ابزار **Git**
 
-### مراحل نصب:
-۱. مخزن را کلون کنید:
+### ۱. دریافت مخزن و نصب پکیج‌ها:
 ```bash
 git clone https://github.com/asad-khalili-it/gardone.git
 cd gardone
-```
-
-۲. وابستگی‌ها را نصب نمایید:
-```bash
 npm install
 ```
 
-۳. فایل `.env` را بر اساس `.env.example` بسازید:
+### ۲. تنظیم متغیرهای محیطی (`.env`):
+یک فایل به نام `.env` در ریشه پروژه بسازید (یا فایل `.env.example` را کپی و تغییر دهید):
+
 ```env
-DATABASE_URL="mysql://root:@localhost:3306/wheel_of_fortune"
-NEXTAUTH_SECRET="your-super-secret-key-123456"
-NEXTAUTH_URL="http://localhost:3000"
+# آدرس اتصال دیتابیس MySQL
+# فرمت: mysql://نام_کاربری:رمز_عبور@آدرس_هاست:پورت/نام_دیتابیس
+DATABASE_URL="mysql://root:@localhost:3306/gardone_db"
+
+# کلید رمزنگاری نشست‌ها (یک متن تصادفی دلخواه)
+NEXTAUTH_SECRET="gardone-super-secret-key-replace-this-with-random-hash"
+
+# دامنه یا آدرس پروژه
+NEXTAUTH_URL="https://gardone.yourdomain.ir"
 ```
 
-۴. دیتابیس را ایجاد کرده و جداول Prisma را اجرا کنید:
+### ۳. همگام‌سازی دیتابیس و جداول Prisma:
+دستورات زیر ساختار دیتابیس را به صورت خودکار ایجاد و کلاینت پریزما را جنریت می‌کنند:
 ```bash
 npx prisma db push
+npx prisma generate
 ```
 
-۵. اجرای پروژه در محیط توسعه:
+---
+
+## 🔑 مدیریت و ریست رمز عبور ادمین
+
+برای حفظ امنیت در مخزن عمومی، رمز عبور ثابتی برای مدیر کل وجود ندارد و اسکریپت امنیتی به صورت خودکار **رمز عبور تصادفی و پیچیده** تولید می‌کند.
+
+### تولید ادمین اولیه یا ریست با رمز رندوم:
+دستور زیر را در ترمینال اجرا کنید:
 ```bash
-npm run dev
+node scripts/create-admin.js
 ```
-اکنون پروژه در آدرس `http://localhost:3000` در دسترس است.
+این اسکریپت یک رمز عبور تصادفی و امن (شامل حروف کوچک، بزرگ، اعداد و سیمبل‌ها) تولید کرده و اطلاعات را مستقیماً در ترمینال نمایش می‌دهد. همچنین فروشگاه دمو (`demo@store.com` / `demo123`) را نیز فعال می‌کند.
+
+### تعیین یا ریست رمز عبور دلخواه برای ادمین:
+اگر در هر زمان مایل بودید رمز مدیر کل را به رمز دلخواه خود تغییر دهید یا رمز را فراموش کردید، کافی است دستور زیر را با رمز جدید خود اجرا نمایید:
+```bash
+node scripts/create-admin.js "MyNewSecurePassword@2026"
+```
+*(اختیاری: می‌توانید ایمیل ادمین را نیز به عنوان آرگومان دوم تعیین کنید)*:
+```bash
+node scripts/create-admin.js "MyPassword@123" "admin@mydomain.ir"
+```
+> **نکته:** اجرای مجدد این دستور اطلاعات دیگر دیتابیس را پاک نمی‌کند؛ صرفاً رمز عبور مدیر کل را به‌روزرسانی (Upsert) می‌نماید.
+
+---
+
+## 🌐 تنظیمات پروداکشن (PM2 و وب سرور / cPanel)
+
+### ۱. بیلد پروژه برای تولید (Production):
+```bash
+npm run build
+```
+
+### ۲. اجرا با مدیر پروسه PM2:
+فایل `ecosystem.config.js` در پروژه آماده است. با دستور زیر پروژه را بر روی پورت اختصاصی (مثلاً 3042) اجرا کنید:
+```bash
+pm2 start ecosystem.config.js
+pm2 save
+```
+
+### ۳. تنظیم معکوس (Reverse Proxy) در سی‌پنل (cPanel / Apache):
+اگر پروژه روی هاست اشتراکی cPanel با وب‌سرور آپاچی قرار دارد، فایل `.htaccess` زیر در مسیر دامنه یا ساب‌دامین قرار داده شده تا ترافیک را به نودجی‌اس پورت 3042 هدایت کند:
+
+```apache
+DirectoryIndex disabled
+
+RewriteEngine On
+RewriteBase /
+
+# پشتیبانی از WebSocket
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteCond %{HTTP:Connection} upgrade [NC]
+RewriteRule ^(.*)$ ws://127.0.0.1:3042/$1 [P,L]
+
+# هدایت ریشه و استاتیک‌ها
+RewriteRule ^$ http://127.0.0.1:3042/ [P,L]
+RewriteRule ^index\.(php|html?)$ http://127.0.0.1:3042/ [P,L]
+RewriteRule ^_next/(.*)$ http://127.0.0.1:3042/_next/$1 [P,L]
+
+# هدایت تمامی درخواست‌ها به پورت Next.js
+RewriteRule ^(.*)$ http://127.0.0.1:3042/$1 [P,L]
+```
 
 ---
 
 # 🇬🇧 English Documentation
 
 ## 🌐 Overview
-**Gardone** is a turnkey Web SaaS platform designed for offline and online retail stores. By placing a custom **QR Code** at storefront windows or checkouts, passersby can scan with their smartphone camera, enter their contact info (Name & Phone Number), and spin an engaging lucky wheel to win exclusive store vouchers and discounts.
+**Gardone** is a modern, turn-key retail engagement platform designed to bridge physical retail stores and digital marketing. Offline stores display a custom-designed **QR Code poster** at their counters or shop windows. Customers scan the QR code with their mobile devices, input their contact details, and spin a beautiful, high-fps lucky wheel to win store discounts and gifts.
+
+---
 
 ## ⚡ Key Features
-- **Pure Canvas API Wheel:** High performance with zero third-party wheel bloat. Features 5-7 rapid spins with natural ease-out deceleration, blinking casino LED sockets, and dynamic ticker audio.
-- **Automated QR Code & Poster Generator:** Dynamically creates high-resolution QR codes and printable shop posters right from the store owner's dashboard.
-- **Multiple Visual Themes:**
-  - `Starter`: Clean dark mode with energetic accent colors.
-  - `Luxury`: Royal gold-and-black style tailored for jewelry, luxury goods, and boutiques.
-  - `Neon`: Cyberpunk neon glows tailored for cafés and modern stores.
-- **Real Logo Uploader:** Integrated file upload system with instant preview for store logos.
-- **Voucher Redemption:** Store owners can mark won vouchers as "Redeemed" upon in-store checkout to prevent repeated use.
-- **Lead Collection & Excel Export:** Collects valuable opt-in phone numbers with CSV export for SMS and WhatsApp marketing campaigns.
+- **Native HTML5 Canvas Wheel:** Fluid 60fps spin animations, natural ease-out deceleration, neon LED borders, and realistic audio effects with zero external canvas library overhead.
+- **Dynamic Poster & QR Code Engine:** Generates high-resolution store QR codes ready for instant PNG download or high-DPI direct printing.
+- **3 Visual Themes:**
+  - `Starter`: Energetic dark mode theme with neon accents.
+  - `Luxury`: Royal gold and black theme tailored for jewelry, boutiques, and luxury brands.
+  - `Neon`: Cyberpunk glowing theme ideal for modern coffee shops and youth brands.
+- **Store Logo Uploader:** Upload and showcase your brand emblem directly on the lucky wheel.
+- **Anti-Fraud & Redemption System:** Tracks customer wins per phone number and allows cashiers to redeem/invalidate used coupons.
+- **Lead Collection & Excel (CSV) Export:** Collect customer names and phone numbers for SMS marketing and CRM integration.
 
-## 🔐 System Architecture
+---
 
-| Role | Access Route | Capabilities |
-| :--- | :--- | :--- |
-| **Super Admin** | `/admin` | Creates stores, manages subscriptions, assigns visual themes, monitors global stats. |
-| **Store Owner** | `/panel` | Edits prize slices, win probabilities, gets QR code poster, redeems vouchers, exports leads. |
-| **Customer** | `/[slug]` | Scans QR, registers details, spins wheel, receives unique discount code & confetti animation. |
+## 🔐 Roles & Architecture
 
-## 🛠️ Getting Started
+```
+                    ┌────────────────────────┐
+                    │      Super Admin       │  --> /admin
+                    └───────────┬────────────┘
+                                │
+                    ┌───────────┴────────────┐
+                    │      Store Owner       │  --> /panel
+                    └───────────┬────────────┘
+                                │
+                    ┌───────────┴────────────┐
+                    │     Store Customer     │  --> /[slug]
+                    └────────────────────────┘
+```
+
+---
+
+## 🛠️ Quick Start & Installation
 
 ```bash
 # 1. Clone repository
@@ -145,26 +213,53 @@ cd gardone
 # 2. Install dependencies
 npm install
 
-# 3. Configure environment
+# 3. Setup environment variables (.env)
 cp .env.example .env
+# Edit DATABASE_URL, NEXTAUTH_SECRET, and NEXTAUTH_URL
 
-# 4. Sync Prisma with MySQL
+# 4. Synchronize Prisma Database schema
 npx prisma db push
+npx prisma generate
 
-# 5. Start dev server
+# 5. Build and launch development server
 npm run dev
 ```
 
-## ⚙️ Environment Variables
-| Variable | Description |
-| :--- | :--- |
-| `DATABASE_URL` | MySQL Connection URL (`mysql://user:pass@host:port/dbname`) |
-| `NEXTAUTH_SECRET` | Secret key for JWT session encryption |
-| `NEXTAUTH_URL` | Canonical URL of the deployment (e.g. `https://yourdomain.com`) |
+---
+
+## 🔑 Admin Setup & Password Reset
+
+To ensure production security, `create-admin.js` dynamically generates a cryptographically secure random password every time it runs.
+
+```bash
+# Generate admin with secure random password (printed in terminal):
+node scripts/create-admin.js
+
+# Or set / reset with a custom password:
+node scripts/create-admin.js "YourStrongPassword@123"
+
+# Or with custom email and password:
+node scripts/create-admin.js "YourStrongPassword@123" "custom-admin@domain.com"
+```
+
+> **Note:** Running `node scripts/create-admin.js` performs an upsert operation. It will safely update the existing admin password without modifying any other data.
 
 ---
 
-## 👨‍💻 توسعه‌دهنده و سازنده / Author & Developer
+## 🚢 Production & Reverse Proxy
+
+```bash
+# Build production bundle
+npm run build
+
+# Start with PM2 using ecosystem.config.js
+pm2 start ecosystem.config.js
+pm2 save
+```
+
+---
+
+## 👨‍💻 توسعه‌دهنده / Author
 - **اسد خلیلی (Asad Khalili)**
 - وب‌سایت شخصی: [https://asadkhalili.ir](https://asadkhalili.ir)
 - گیت‌هاب: [@asad-khalili-it](https://github.com/asad-khalili-it)
@@ -172,4 +267,4 @@ npm run dev
 ---
 
 ## 📄 License
-This project is open-source and developed by [Asad Khalili](https://asadkhalili.ir) under the [MIT License](LICENSE).
+This project is open-source and licensed under the [MIT License](LICENSE).
