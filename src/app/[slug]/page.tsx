@@ -15,12 +15,12 @@ import "@/styles/themes/neon.css";
 
 const MOCK_STORE: StoreConfig = {
   id: 1,
-  slug: "demo-store",
-  name: "فروشگاه نمونه",
+  slug: "gardone",
+  name: "فروشگاه نمونه (گردونه شانس)",
   logo: null,
-  phone: "09121234567",
-  instagram: "@demo_store",
-  address: "تهران، خیابان ولیعصر",
+  phone: "09157123103",
+  instagram: "@asadkhalili",
+  address: "تهران / مشهد",
   isActive: true,
   theme: "starter",
   colors: {
@@ -96,7 +96,7 @@ export default function WheelPage({ params }: { params: Promise<{ slug: string }
               isActive: true,
             })));
           }
-        } else if (slug !== "demo-store") {
+        } else if (slug !== "demo-store" && slug !== "gardone") {
           setNotFound(true);
         }
       } catch (err) {
