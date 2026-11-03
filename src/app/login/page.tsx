@@ -107,6 +107,11 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-6 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-400">
+          <div className="mb-3 p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-300/90 text-right space-y-1">
+            <p className="font-bold text-amber-400">اطلاعات ورود به پنل فروشگاه دمو:</p>
+            <p>ایمیل: <span className="font-mono text-white">demo@store.com</span></p>
+            <p>رمز عبور: <span className="font-mono text-white">demo123</span></p>
+          </div>
           <p className="text-slate-400">
             طراحی و توسعه توسط{" "}
             <a

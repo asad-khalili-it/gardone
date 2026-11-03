@@ -38,34 +38,67 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = process.env.ADMIN_EMAIL || 'admin@asadkhalili.ir';
-  const password = process.env.ADMIN_PASSWORD || 'Asad@Gardone!2026';
-  const name = 'اسد خلیلی (مدیر کل)';
-
-  const hashedPassword = await bcrypt.hash(password, 10);
+  // 1. Seed / Upsert Super Admin
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@asadkhalili.ir';
+  const adminPassword = process.env.ADMIN_PASSWORD || 'Asad@Gardone!2026';
+  const adminName = 'اسد خلیلی (مدیر کل)';
+  const hashedAdminPassword = await bcrypt.hash(adminPassword, 10);
 
   const admin = await prisma.admin.upsert({
-    where: { email },
+    where: { email: adminEmail },
     update: {
-      password: hashedPassword,
-      name,
+      password: hashedAdminPassword,
+      name: adminName,
       role: 'super_admin'
     },
     create: {
-      email,
-      password: hashedPassword,
-      name,
+      email: adminEmail,
+      password: hashedAdminPassword,
+      name: adminName,
       role: 'super_admin'
     }
   });
 
-  console.log('--------------------------------------------------');
-  console.log('✅ حساب مدیر کل با موفقیت ایجاد / به‌روزرسانی شد:');
+  // 2. Seed / Upsert Demo Store Owner
+  const demoEmail = 'demo@store.com';
+  const demoPassword = 'demo123';
+  const hashedDemoPassword = await bcrypt.hash(demoPassword, 10);
+
+  const demoStore = await prisma.store.upsert({
+    where: { ownerEmail: demoEmail },
+    update: {
+      ownerPassword: hashedDemoPassword,
+      isActive: true,
+      name: 'فروشگاه نمونه (دمو)',
+      slug: 'demo-store'
+    },
+    create: {
+      name: 'فروشگاه نمونه (دمو)',
+      slug: 'demo-store',
+      ownerName: 'مدیر فروشگاه دمو',
+      ownerEmail: demoEmail,
+      ownerPhone: '09120000000',
+      ownerPassword: hashedDemoPassword,
+      isActive: true,
+      theme: 'starter',
+      address: 'تهران، خیابان ولیعصر',
+      instagram: '@demo_store'
+    }
+  });
+
+  console.log('====================================================');
+  console.log('✅ ۱. اطلاعات ورود مدیر کل سامانه (Super Admin):');
   console.log(`👤 نام: ${admin.name}`);
   console.log(`📧 ایمیل: ${admin.email}`);
-  console.log(`🔑 رمز عبور: ${password}`);
-  console.log(`🛡 نقش: ${admin.role}`);
-  console.log('--------------------------------------------------');
+  console.log(`🔑 رمز عبور: ${adminPassword}`);
+  console.log(`🔗 مسیر پنل: /admin`);
+  console.log('----------------------------------------------------');
+  console.log('✅ ۲. اطلاعات ورود فروشگاه دمو (Store Owner):');
+  console.log(`🏪 نام فروشگاه: ${demoStore.name}`);
+  console.log(`📧 ایمیل: ${demoEmail}`);
+  console.log(`🔑 رمز عبور: ${demoPassword}`);
+  console.log(`🔗 مسیر پنل: /panel`);
+  console.log('====================================================');
 }
 
 main()
